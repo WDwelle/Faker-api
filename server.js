@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 8000;
 const faker = require('@faker-js/faker');
+
 //===User creator===
 const randomFName = faker.name.firstName();
 const randomLName = faker.name.lastName();
@@ -17,6 +18,7 @@ const state = faker.address.state();
 const zipCode = faker.address.zipCode();
 const country = faker.address.country();
 
+//===id generator===
 const id = faker.datatype.uuid();
 
 
@@ -53,23 +55,24 @@ class Company {
         }
     }
 }
-
+//===express middleware===
 app.use( express.json() );
 app.use( express.urlencoded({ extended: true }) );
 
-app.get("/api/users/new", (req, res) => {
+//===Routes===
+app.get("/api/users/new", (req, res) => {//===new user===
     res.json(new User());
 });
 
-app.get("/api/companies/new", (req, res) => {
+app.get("/api/companies/new", (req, res) => {//===new company===
     res.json(new Company());
 });
 
-app.get("/api/user/company", (req, res) => {
+app.get("/api/user/company", (req, res) => {//===create both user and company===
     res.json({
         user : new User(),
         company : new Company()
     });
 })
-
+//===port listener===
 app.listen( port, () => console.log(`Listening on port: ${port}`) );

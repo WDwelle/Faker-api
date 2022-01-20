@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express": "^4.17.2",
+    "faker": "^6.6.6"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.3"
+  }
+}
